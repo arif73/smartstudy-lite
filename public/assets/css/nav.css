@@ -1,0 +1,180 @@
+* {
+  box-sizing:border-box;
+}
+
+.navbg {
+  background:url(http://www.alessioatzeni.com/mac-osx-lion-css3/res/img/dock-bg.png) repeat-x bottom;
+}
+
+.folded-corner {
+  position:relative;
+  width:50%;
+  padding:1em 1.5em;
+  margin:0 auto;
+  color:#fff;
+  background:#47a79a;
+  overflow:hidden;
+}
+
+.folded-corner:before {
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  border-width:0 20px 20px 0;
+  border-style:solid;
+  border-color:#29051B #29051B #308277 #308277;
+  -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  box-shadow:0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  display:block;
+  width:0;
+}
+
+.folded-corner.rounded {
+  -moz-border-radius:5px 0 5px 5px;
+  border-radius:5px 0 5px 5px;
+}
+
+.folded-corner.rounded:before {
+  -moz-border-radius:0 0 0 2px;
+  border-radius:0 0 0 2px;
+}
+
+#menu {
+  margin:0px;
+  padding:0px;
+  font:normal 12px Tahoma;
+  text-transform:uppercase;
+}
+
+#menu li {
+  float:left;
+  position:relative;
+  list-style-type:none;
+}
+
+#menu li a {
+  color:#fff;
+  font-size:16px;
+  text-decoration:none;
+  display:inline-block;
+  padding:12px 30px;
+}
+
+#menu li a:hover {
+  color:#15253C;
+  background:#FF6D8C;
+}
+
+#notificationContainer {
+  background-color:#fff;
+  border:1px solid #E6E6E6;
+  -webkit-box-shadow:0 4px 8px rgba(0, 0, 0, .25);
+  overflow:visible;
+  position:absolute;
+  top:46px;
+  left:-175px;
+  margin-left:50%;
+  width:350px;
+  z-index:1;
+  display:none;
+}
+
+#notificationContainer:before {
+  content:'';
+  display:block;
+  position:absolute;
+  left:-10px;
+  width:0;
+  height:0;
+  color:transparent;
+  border:10px solid black;
+  border-color:transparent transparent #F2F2F2;
+  margin-top:-20px;
+  margin-left:50%;
+}
+
+#notificationContainer li {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+#notificationTitle {
+  font-weight:bold;
+  padding:8px;
+  font-size:13px;
+  background-color:#F2F2F2;
+  border-bottom:1px solid #dddddd;
+  text-align:center;
+}
+
+#notificationsBody {
+  padding:0px 0px 0px !important;
+  min-height:200px;
+  overflow:hidden;
+}
+
+#notification_count {
+  padding:2px 7px 2px 7px;
+  background:#cc0000;
+  color:#ffffff;
+  font-weight:bold;
+  border-radius:9px;
+  -moz-border-radius:9px;
+  -webkit-border-radius:9px;
+  position:absolute;
+  right:-3px;
+  margin-top:5px;
+  font-size:11px;
+}
+
+#menu li #animated-list {
+  float:none !important;
+  padding:0 !important;
+}
+
+#menu li #animated-list li {
+  float:none !important;
+  background:transparent;
+  border-bottom:1px solid #F9A4CD;
+  box-shadow:0 0 0 transparent;
+}
+
+#menu li #animated-list li a {
+  display:block;
+  padding:10px;
+  background:#FF6D8C;
+}
+
+#menu li #animated-list li a:hover {
+  background:#F81C48;
+}
+
+.persona {
+  width:30px;
+  height:30px;
+  float:left;
+}
+
+.notification-text {
+  display:inline-block;
+  line-height:30px;
+  padding-left:10px;
+}
+
+.list-text {
+  display:block;
+  line-height:30px;
+  margin-left:40px;
+}
+
+.slide-animation li {
+  transform:translateY(-500%);
+  transition:all 0.6s ease;
+}
+
+.slide-animation.show li {
+  transform:translateY(0%);
+}
+

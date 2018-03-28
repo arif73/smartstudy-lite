@@ -33,7 +33,7 @@
                     <a href="{{route('teacher.index')}}">
                         <div class="img"><img src="{{getenv('baseurl')}}/assets/img/teachers.png" alt="img"></div>
                         <div class="info">
-                            <h3>Teachers</h3>
+                            <h3><s>Teachers</s></h3>
 
                         </div>
                     </a>

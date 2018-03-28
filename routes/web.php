@@ -51,7 +51,7 @@ Route::post('/postaddteacher', [
 
 
 Route::get('/login', [
-    'uses'=> 'StudentController@login',
+    'uses'=> 'AdminController@login',
     'as' => 'login'
 ]);
 

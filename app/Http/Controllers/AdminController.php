@@ -28,15 +28,7 @@ class AdminController extends Controller
     public $name="";
 
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('check-permission:admin');
-    }
+ 
 
     /**
      * @param $id

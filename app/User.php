@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Students','userid','id');
     }
+
+    public function has_video_reaction(){
+        $this->hasMany('App\Smartstudy_videoreaction');
+    }
+
+    public function video(){
+        $this->hasMany('App\Smartstudy_video');
+    }
+
+
 }

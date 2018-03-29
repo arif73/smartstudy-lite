@@ -71,6 +71,17 @@ Route::post('api/teacher/courseAttendanceByDate','Api\APIControllerAttendance@tc
 Route::post('api/teacher/classRoutine','Api\APIControllerClassRoutine@tClassRoutine');
 Route::post('api/teacher/result/getCourseResultsList','Api\APIControllerResult@tGetCourseResultsList');
 Route::post('api/teacher/attendance/bulkAttendaneEntry','Api\APIControllerAttendance@bulkAttendanceEntry');
+/*-------------------------E- learning API-------------------*/
+
+Route::post('api/user/video-list_with_course','Api\APIControllerAttendance@Video_Course_FetchAPI');
+
+
+
+
+
+/*
+___________________ends here-----------------------*/
+
 
 /*
 |--------------------------------------------------------------------------

@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\CourseDates;
 use App\HomeworkSubmissions;
+use App\Smartstudy_provider;
+use App\Smartstudy_video;
+use App\Smartstudy_videocourses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Collection;
 use App\User;
@@ -273,6 +277,76 @@ class APIControllerAttendance extends Controller
             $data['msg'] = "Exceptions Caught: ".$e->getMessage()." in ".$e->getLine();
             return response()->json($data);
         }
+
+    }
+
+
+
+
+
+  /*  ---------------------E learning API-----------------*/
+
+    public function Video_Course_FetchAPI(Request $request){
+        if(!$this->checkAuthentication($request)){
+            $data['error'] = true;
+            $data['errorcode'] = 401;
+            $data['msg'] = "Unauthorized Access!";
+            return response()->json($data);
+        }
+        //Check Permission for courseID,provider/authorID,level/categoryID
+        if(Smartstudy_video::where(['course_id' =>$request->courseID,'level_id'=>$request->categoryID,'provider_id'=>$request->authorID])->count()==0){
+            $data['error'] = true;
+            $data['error_code'] = 404;
+            $data['msg'] = "Permission Denied";
+            return response()->json($data);
+        }
+        try {
+            $AuthorID = $request->authorID;
+            $courseID = $request->courseID;
+            if ($author=Smartstudy_provider::where('id', $AuthorID)->get()) {
+
+                // set result array
+                $totalCourse = Smartstudy_videocourses::where('provider_id' , $AuthorID)->pluck('id')->count();
+                $totalVideos = Smartstudy_video::where('provider_id' , $AuthorID)->pluck('id')->count();
+                $course = DB::table('smartstudy_videocourses')
+                    ->select('id' , 'name' , 'description' , 'created_at')
+                    ->where('provider_id' , $AuthorID)
+                    ->get();
+                /*$course = DB::table('smartstudy_videocourses')
+                    ->join('smartstudy_videos', 'smartstudy_videocourses.provider_id', '=', 'smartstudy_videos.provider_id')
+                    ->select('smartstudy_videocourses.id','smartstudy_videocourses.name','smartstudy_videocourses.description','smartstudy_videocourses.created_at',DB::raw('SUM(smartstudy_videos.duration) as duration'))
+                    ->get();*/
+                /*$course = DB::table('smartstudy_videocourses')
+                    ->join('smartstudy_videos', 'smartstudy_videocourses.provider_id', '=', 'smartstudy_videos.provider_id')
+                    ->select('smartstudy_videocourses.*','SUM(smartstudy_videos.duration)')
+                    ->get();*/
+                $data[''] = $author;
+                $data['total_course'] = $totalCourse;
+                $data['total_videos'] = $totalVideos;
+                $data['course_list'] = $course;
+                $data['error'] = false;
+                $data['msg'] = "success";
+                return response()->json($data);
+
+            } else {
+                $data['error'] = true;
+                $data['msg'] = "No courses found with this id";
+                return response()->json($data);
+            }
+        }catch(\Error $e){
+            $data['error'] = true;
+            $data['error_code'] = 500;
+            $data['msg'] = "Exceptions Caught: ".$e->getMessage()." in ".$e->getLine();
+            return response()->json($data);
+        }
+        catch(\Exception $e){
+            $data['error'] = true;
+            $data['error_code'] = 500;
+            $data['msg'] = "Exceptions Caught: ".$e->getMessage()." in ".$e->getLine();
+            return response()->json($data);
+        }
+
+
 
     }
 
